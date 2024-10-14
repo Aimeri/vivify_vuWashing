@@ -23,10 +23,11 @@ RegisterNetEvent('vivify_vuTipping:tipPlayer', function(targetPlayerId)
 
                 local currentCurrency = Player.Functions.GetItemByName(Config.Currency)
                 if currentCurrency and currentCurrency.amount >= 10 then
+                    -- Remove the total amount of black_money from the player.
                     Player.Functions.RemoveItem(Config.Currency, 10)
-
+                    -- Give 6 dollars cash to the original player.
                     Player.Functions.AddMoney('cash', 6)
-
+                    -- Give 4 dollars black_money to the dancer/target player.
                     Target.Functions.AddItem(Config.Currency, 4)
                 else
                     TriggerClientEvent('QBCore:Notify', src, 'Not enough currency to continue tipping.', 'error')
